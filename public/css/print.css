@@ -1,0 +1,42 @@
+@page {
+	margin: 0;
+    padding: 40px;  /* this affects the margin in the printer settings */
+}
+html, body{
+	font-family: "Arial", Verdana, sans-serif;
+	background: #f1f1f1;
+}
+.print-container{
+	width:100%;
+	padding: 50px;
+	margin: 0 auto;
+	background: #fff;
+	border-radius: 2px;
+	/*padding: 50PX;*/
+}
+h2{color: #e0a007;}
+h3{color: #1c84c6;}
+.logo{width: 100px;}
+.clear{clear: both;}
+.clear20{clear: both; height: 20px;}
+.clear10{clear: both; height: 5px;}
+.header{
+	width: 100%;
+	padding: 15px;
+	background: #f1f1f1;
+	color: #4d4d4d;
+}
+.header{padding: 10px 20px; margin: 0 auto;}
+.data-table{padding:30px;}
+table th{background: #f1f1f1;}
+.footer{padding:20px 10px 50px 10px; margin-top:40px;font-weight: bold;}
+.btn{background: #fff; border: 1px solid #aaa; color: #005ba1;}
+.floatR{float: right;}
+.commentbox{width: 100%; border: 1px solid #ccc; height: auto;padding:20px;}
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
