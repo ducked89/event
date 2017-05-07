@@ -41,7 +41,7 @@
                         </a>
                 </div>
             </div>
-        </div>       
+        </div>
     </div>
 </section>
 
@@ -54,7 +54,7 @@
       if (typeof window.home == 'function'){ // The rest of the world
         window.home();
         document.location.href = "about:home";
-      } else if (document.all) { // For IE 
+      } else if (document.all) { // For IE
         window.location.href = "about:home";
       } else {
         document.location.href = "about:home";
@@ -75,14 +75,14 @@
 
         //alert(""+login+" - "+pass);
 
-        if(pass==""){   
-            $("#result").html("<div class='alert alert-warning'>Veuiller saisir vos identifiants.</div>").fadeOut().fadeIn();   
+        if(pass==""){
+            $("#result").html("<div class='alert alert-warning'>Veuiller saisir votre mot de passe.</div>").fadeOut().fadeIn();
         }
-        else if(login==""){ 
-            $("#result").html("<div class='alert alert-warning'>Veuiller saisir vos identifiants.</div>").fadeOut().fadeIn();   
+        else if(login==""){
+            $("#result").html("<div class='alert alert-warning'>Veuiller saisir votre identifiant.</div>").fadeOut().fadeIn();
         }
-        else {  
-            $('#loginMainBox').children('.ibox-content').toggleClass('sk-loading');     
+        else {
+            $('#loginMainBox').children('.ibox-content').toggleClass('sk-loading');
             var d = $("#login_form_submit").serialize();
             var id = "user_login_form";
 
@@ -94,14 +94,13 @@
                 data: d+'&id='+id,
                 success: function(res)
                 {
-
                     if(res=="ADMIN"){
                         window.location = "<?php echo SITE;?>administrator/";
                     }else if(res=="USER"){
-                        window.location = "<?php echo SITE;?>members/";
+                        window.location = "<?php echo SITE;?>organizers/";
                     } else{
                             //$('#loginMainBox').children('.ibox-content').slideToggle();
-                            $('#loginMainBox').children('.ibox-content').toggleClass('sk-loading'); 
+                            $('#loginMainBox').children('.ibox-content').toggleClass('sk-loading');
                             $("#result").html("<div class='alert alert-danger'>"+res+"</div>").fadeOut().fadeIn();
                             $('#connectpass').val("");
                             // return false;

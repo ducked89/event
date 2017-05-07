@@ -5,7 +5,7 @@
  */
 
 /**
- * Configuration affichage erreurs. Affiche toutes les erreurs dans l'environnement de developpement 
+ * Configuration affichage erreurs. Affiche toutes les erreurs dans l'environnement de developpement
  * et de simple erreurs dans l'environnement de production
  */
 error_reporting(E_ALL);
@@ -34,7 +34,7 @@ define('DB_PASS', '');
 define('PATH_VIEWS', 'app/views/');
 define('EXT', '.php');
 define('SITE', str_replace("index.php", "", $_SERVER['SCRIPT_NAME']));
-define('SITE2', "/event1/");
+define('SITE2', "/event/");
 
 /**
 * Ouvrir la connexion a la base de donnees avec application/config/config.php

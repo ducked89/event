@@ -41,15 +41,15 @@
         <!-- jQuery UI -->
     <script src="<?php echo SITE;?>public/js/jquery-3.1.1.min.js"></script>
     <script src="<?php echo SITE;?>public/js/plugins/jquery-ui/jquery-ui.min.js"></script>
-    
+
 
 </head>
 
-<body> 
+<body>
     <div id="wrapper" >
        <!-- Menu -->
-       <?php  require_once 'app/views/includes/menu_admin.php';    ?>
-       
+       <?php  require_once 'app/views/includes/menu/administrator.php';    ?>
+
        <!-- Page Body -->
        <div id="page-wrapper" class="gray-bg dashbard-1">
             <div class="row border-bottom">
@@ -57,12 +57,12 @@
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-success " href="#">
                         <i class="fa fa-bars"></i> </a>
-                             
+
                     </div>
 
                     <!-- Top bar messages and menu -->
-                    <?php  require_once 'app/views/includes/navbar_admin.php';    ?>
-                  
+                    <?php  require_once 'app/views/includes/navbar/administrator.php';    ?>
+
 
                 </nav>
             </div>
@@ -73,7 +73,7 @@
             </div>
 
             <!-- Footer -->
-            <?php  require_once 'app/views/includes/footer.php';?>
+            <?php  require_once 'app/views/includes/footer/administrator.php';?>
         </div>
 
     </div>
@@ -110,7 +110,7 @@
     <!-- Sparkline demo data  -->
     <script src="<?php echo SITE;?>public/js/demo/sparkline-demo.js"></script>
 
-    <!-- ChartJS--> 
+    <!-- ChartJS-->
     <script src="<?php echo SITE;?>public/js/plugins/chartJs/Chart.min.js"></script>
 
     <!-- Toastr -->
@@ -120,7 +120,7 @@
 
      <script src="<?php echo SITE;?>public/js/moment.js"></script>
 
-    
+
 
    <!-- Date range picker -->
    <script src="<?php echo SITE;?>public/js/plugins/datapicker/bootstrap-datepicker.js"></script>

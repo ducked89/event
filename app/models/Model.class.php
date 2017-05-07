@@ -30,7 +30,6 @@
 			$this->table = $name;
 		}
 
-
 		/*
 		* Afficher toutes les données de la table
 		*/
@@ -44,10 +43,10 @@
 			}
 			$req = $PDO->prepare("SELECT ".$champs." FROM ".$this->table." ORDER BY id DESC");
 			try{
-				$req->execute(); 
+				$req->execute();
 				while ($data = $req->fetch(PDO::FETCH_OBJ)) {
 					$d[] = $data;
-				}		
+				}
 			}
 			catch (PDOException $e){
 				$d[]=null;
@@ -55,15 +54,15 @@
 			return $d;
 		}
 
-		
+
 		function trouverQuantite()
 		{
 			global $PDO;
 			$req = $PDO->prepare("SELECT COUNT(*) as nb FROM ".$this->table);
 			try{
-				$req->execute(); 
+				$req->execute();
 				$data = $req->fetchAll(PDO::FETCH_OBJ);
-				$nb = $data[0]->nb;	
+				$nb = $data[0]->nb;
 			}
 			catch (PDOException $e){
 				$nb=0;
@@ -76,17 +75,15 @@
 			global $PDO;
 			$req = $PDO->prepare("SELECT COUNT(*) as nb FROM ".$this->table." WHERE ".$cond);
 			try{
-				$req->execute(); 
+				$req->execute();
 				$data = $req->fetchAll(PDO::FETCH_OBJ);
-				$nb = $data[0]->nb;	
+				$nb = $data[0]->nb;
 			}
 			catch (PDOException $e){
 				$nb=0;
 			}
 			return $nb;
 		}
-
-
 
 		/*
 		* Insertion  de données dans une table
@@ -97,23 +94,23 @@
 			if($data!=null && !empty($data))
 			{
 
-				$req =  "INSERT INTO ".$this->table." (";				
+				$req =  "INSERT INTO ".$this->table." (";
 				foreach ($data as $key=>$val) {
 					$req .= " $key," ;
 				}
 
 				$req = substr($req, 0, -1);
 				$req .= ") VALUES (";
-				
+
 				foreach ($data as $val) {
 					$req .= $val." ," ;
 				}
 				$req = substr($req, 0, -1);
 				$req .= " )";
-			
+
 				$req = $PDO->prepare($req);
 				try{
-					$req->execute($data); 			
+					$req->execute($data);
 					$ajouter =  true;
 				}
 				catch (PDOException $e){
@@ -133,23 +130,23 @@
 			if($data!=null && !empty($data))
 			{
 
-				$req =  "INSERT INTO ".$this->table." (";				
+				$req =  "INSERT INTO ".$this->table." (";
 				foreach ($data as $key=>$val) {
 					$req .= " $key," ;
 				}
 
 				$req = substr($req, 0, -1);
 				$req .= ") VALUES (";
-				
+
 				foreach ($data as $val) {
 					$req .= $PDO->quote($val)." ," ;
 				}
 				$req = substr($req, 0, -1);
 				$req .= " )";
-			
+
 				$req = $PDO->prepare($req);
 				try{
-					$req->execute($data); 			
+					$req->execute($data);
 					$ajouter =  true;
 				}
 				catch (PDOException $e){
@@ -175,7 +172,7 @@
 				if($exist!=null && isset($exist[0]))
 				{
 					$req =  "UPDATE ".$this->table." SET ";
-					
+
 					foreach ($data as $key => $value) {
 						if($key!="id")
 						{
@@ -189,7 +186,7 @@
 					// die($req);
 					$req = $PDO->prepare($req);
 					try{
-						$req->execute(); 			
+						$req->execute();
 						$modifier =  true;
 					}
 					catch (PDOException $e){
@@ -216,7 +213,7 @@
 		function modifierCondition($data, $cond)
 		{
 			global $PDO;
-			$req =  "UPDATE ".$this->table." SET ";	
+			$req =  "UPDATE ".$this->table." SET ";
 			foreach ($data as $key => $value) {
 				$req .= $key.'='.$PDO->quote($value).' ,' ;
 			}
@@ -227,7 +224,7 @@
 			// die($req);
 			$req = $PDO->prepare($req);
 			try{
-				$req->execute(); 			
+				$req->execute();
 				$modifier =  true;
 			}
 			catch (PDOException $e){
@@ -244,12 +241,12 @@
 				$req =  "UPDATE ".$this->table." SET nbvues = nbvues+1 WHERE id=".$id;
 				$req = $PDO->prepare($req);
 				try{
-					$req->execute(); 			
+					$req->execute();
 					$modifier =  true;
 				}
 				catch (PDOException $e){
 					$modifier = false;
-				}				
+				}
 				return $modifier;
 			}
 		}
@@ -267,15 +264,15 @@
 			$conditions2 = "";
 			$ordre = " id DESC ";
 			$limit = "";
-			
+
 			if(isset($datas["champs"])) {$champs = $datas["champs"];}
 			if(isset($datas["conditions"])) {$conditions = $datas["conditions"];}
 			if(isset($datas["conditions2"])) {$conditions2 = $datas["conditions2"];}
 			if(isset($datas["ordre"])) {$ordre = $datas["ordre"];}
 			if(isset($datas["limit"])) {$limit = $datas["limit"];}
-			
+
 			$req = "SELECT ".$champs." FROM ".$this->table;
-			if(isset($conditions2) && !empty($conditions2) && isset($datas["include"])) 
+			if(isset($conditions2) && !empty($conditions2) && isset($datas["include"]))
 				$req.= " WHERE ".$conditions." ".$conditions2;
 			else if(isset($conditions2) && !empty($conditions2) && !isset($datas["include"]))
 				$req.= $conditions2." ORDER BY ".$ordre.$limit;
@@ -283,14 +280,14 @@
 			$req = $PDO->prepare($req);
 			$d = array();
 			try{
-				$req->execute(); 			
+				$req->execute();
 				while ($data = $req->fetch(PDO::FETCH_OBJ)) {
 					$d[] = $data;
 				}
 			}
 			catch (PDOException $e){
 				$d[]=null;
-			}		
+			}
 			return $d;
 		}
 
@@ -302,16 +299,16 @@
 		function supprimer($id=null)
 		{
 			global $PDO;
-			if($id==null) 
-			{ 
-				$id=$this->id; 
+			if($id==null)
+			{
+				$id=$this->id;
 			}
 			$req = "DELETE FROM ".$this->table." WHERE id=".$id;
 			$req = $PDO->prepare($req);
-			
+
 			try
 			{
-				$req->execute(); 			
+				$req->execute();
 				return true;
 			}
 			catch (PDOException $e){
@@ -325,16 +322,16 @@
 		function supprimerCondition($cond=null)
 		{
 			global $PDO;
-			if($cond==null) 
-			{ 
+			if($cond==null)
+			{
 				return false;
 			}
 			$req = "DELETE FROM ".$this->table." WHERE ".$cond;
 			$req = $PDO->prepare($req);
-			
+
 			try
 			{
-				$req->execute(); 			
+				$req->execute();
 				return true;
 			}
 			catch (PDOException $e){
@@ -355,7 +352,7 @@
 				$end_date=gregoriantojd($date_parts2[1], $date_parts2[2], $date_parts2[0]);
 				return $end_date - $start_date;
 			}
-		
+
 
 		/*
 		* Conversion d'une chaine de chiffre en decimale de 3 chiffres
@@ -365,13 +362,13 @@
 			$v=array();
 			$j=1;
 			// $num = parse_str($num);
-			for ($i=strlen($num)-1; $i >=0 ; $i--) { 
+			for ($i=strlen($num)-1; $i >=0 ; $i--) {
 				if($j%3==0) $v{$i} = " ".$num{$i};
 				else $v{$i} = $num{$i};
 				$j++;
 			}
 			$j="";
-			for ($i=0; $i <count($v) ; $i++) { 
+			for ($i=0; $i <count($v) ; $i++) {
 				$j .= $v{$i};
 			}
 			return $j;
